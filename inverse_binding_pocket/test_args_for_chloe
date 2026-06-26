@@ -1,0 +1,42 @@
+#keep seed constant
+-constant_seed 1
+
+#ignore unrecognized residues to help mitigate crashes
+-ignore_unrecognized_res
+
+#handle ligand repeats if using multiple anchor residues, will otherwise crash without this flag
+-in::file::override_database_params true
+
+#constrain coordinates
+-constrain_relax_to_start_coords
+
+#keep all placements; 0 means keep all, any other integer means keep up to that integer
+-best_pdbs_to_keep 0
+
+#mapped protein system
+#-s /pi/summer.thyme-umw/rosetta_discovery_space/gpr151/gpr151_discovery_thymelab/structures/9W3L.pdb
+-s /input/9W3L.pdb
+
+#mapped motifs file
+
+#/pi/summer.thyme-umw/2024_intern_lab_space/FINAL_motifs_list_filtered_2_3_2023.motifs
+-motif_filename /input/FINAL_motifs_list_filtered_2_3_2023.motifs
+
+#mapped test_params directory
+-params_directory_path /input/test_params/
+
+#rosetta-indexed anchor residue index/indices
+
+#start with residue index 2
+#with whatever Rosetta spits out, find the new index for GLU266 and GLN292, then add the reindex of 266 or 292 here
+
+-protein_discovery_locus 2
+
+#fa_atr cutoff
+-fa_atr_cutoff = -2
+
+#fa_rep cutoff
+-fa_rep_cutoff = 150
+
+#ddg cutoff
+-ddg_cutoff = -9
