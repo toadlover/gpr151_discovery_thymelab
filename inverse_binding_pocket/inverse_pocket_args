@@ -23,6 +23,7 @@
 -motif_filename /input/FINAL_motifs_list_filtered_2_3_2023.motifs
 
 #mapped test_params directory
+#can use a dummy set of test params just so that we get a placement
 -params_directory_path /input/test_params/
 
 #rosetta-indexed anchor residue index/indices
@@ -40,25 +41,19 @@
 ###################################################
 
 #extra user args from: /pi/summer.thyme-umw/rosetta_discovery_space/pth2/shapedb_results/top_hits/lower/lower_res1_11_shifted/extra_args
--output_space_fill_matrix_pdbs true
--use_empty_space_in_space_fill_pdb true
 
-#-protein_grid::output_empty_space true
-
-
-
+#define the center of the binding pocket as integer coordinates. Coordinates should be relative to the PDB being inputted in the -s flag.
 -binding_pocket_center_sf 169,201,153
 
+#integer dimensions in angstroms to investigate +/- in the x,y,z directions from the center. I.e. a value of 5 will investigate 5 angstroms positive and negative of the coordinate in a given dimensions
+#this forms a rectangular prism, more specifically a cube if all values are equal
 -binding_pocket_dimensions_sf 5,5,5
 
+#this should be set to zero for pocket derivation
 -space_fill_cutoff_differential_score_sub 0.0
 
-
-
-
-
--output_motifs_as_pdb false
-
-
-
-#-clean_pdb_name false
+#These are typically debug arguments that are used to view the ProteinGrid of a system, and should be set to false in large discovery operations:
+#output the ProteinGrid of a system to PDB format for visualization and representation of occupied space
+-output_space_fill_matrix_pdbs true
+#output the empty space of a system as explicit atoms, rather than leave empty. Useful for representing the cavity space of a binding pocket.
+-use_empty_space_in_space_fill_pdb true
